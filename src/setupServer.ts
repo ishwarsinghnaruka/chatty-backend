@@ -11,9 +11,10 @@ import { Server } from 'socket.io';
 import { createClient } from 'redis';
 import { createAdapter } from '@socket.io/redis-adapter';
 import 'express-async-errors';
-import { config } from './config';
-import applicationRoutes from './routes';
+import { config } from '@root/config';
+import applicationRoutes from '@root/routes';
 import Logger from 'bunyan';
+// import bodyParser from 'body-parser';
 
 //search difference between session and cookie(minimal data to save)
 
@@ -69,7 +70,7 @@ export class ChattyServer {
   private globalErrorHandler(app: Application): void {
     app.all('*', (req: Request, res: Response) => {
       res.status(HTTP_STATUS.NOT_FOUND).json({
-        message: `${req.originalUrl} not found`
+        message: `${req.originalUrl} not found, Please try again`
       });
     });
 
@@ -115,5 +116,8 @@ export class ChattyServer {
     });
   }
 
-  private socketIOConnections(io: Server): void {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  private socketIOConnections(io: Server): void {
+    log.info('socketIOConnections');
+  }
 }
