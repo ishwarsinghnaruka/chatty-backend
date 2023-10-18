@@ -64,7 +64,7 @@ export class FileTooLargeError extends CustomError {
     super(message);
   }
 }
-export class Server_Error extends CustomError {
+export class ServerError extends CustomError {
   statusCode = HTTP_STATUS.SERVICE_UNAVAILABLE;
   status = 'error';
 
